@@ -13,7 +13,7 @@ WIT_TOKEN    = '6OGZVMSELXTJM5HVSWH2IRBRRMLNGKGK'
 bot = Bot(ACCESS_TOKEN)
 
 #We will receive messages that Facebook sends our bot at this endpoint 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/webhook", methods=['GET', 'POST'])
 def receive_message():
     if request.method == 'GET':
         """Before allowing people to message your bot, Facebook has implemented a verify token
@@ -43,7 +43,7 @@ def receive_message():
                     print('text:', text)
                     # Let's forward the message to Wit /message
                     # and customize our response to the message in handle_message
-                    response = client.message(msg=text, context={'session_id':fb_id})
+                    response = client.message(text)
                     # response ={'text': 'hello bot', 'intents': [{'id': '742387059668438', 'name': 'greating', 'confidence': 0.9787}], 'entities': {}, 'traits': {'wit$greetings': [{'id': '5900cc2d-41b7-45b2-b21f-b950d3ae3c5c', 'value': 'true', 'confidence': 0.9997}]}}
                     handle_message(response=response, fb_id=fb_id)
         else:
@@ -90,20 +90,23 @@ def handle_message(response, fb_id):
     """
     Customizes our response to the message and sends it
     """
-    # Checks if user's message is a greeting
-    # Otherwise we will just repeat what they sent us
     greetings = first_trait_value(response['traits'], 'wit$greetings')
     if greetings:
         text = "hello!"
     else:
-        text = "We've received your message: " + response['_text']
+        text = "We've received your message: " + response['text']
     # send message
     fb_message(fb_id, text)
 
+
+@app.route("/", methods=['GET', 'POST'])
+def show():
+    return 'em đây là bot !!!!!!!'
+
 # Setup Wit Client
 client = Wit(access_token=WIT_TOKEN)
-resp = client.message('hello bot truc ngu ')
+resp = client.message('hello bot!!! ')
 print('Yay, got Wit.ai response: ' + str(resp))
 
 if __name__ == "__main__":
-    app.run(debug= True, host="0.0.0.0", port=8080)
+    app.run(debug= True)
