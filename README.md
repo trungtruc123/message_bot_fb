@@ -1,4 +1,3 @@
 # Basic Flask App
 
-`$ python app.py`
-chatbot covid-19
+`$ python3 app.py`
