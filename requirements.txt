@@ -2,3 +2,4 @@ Flask==1.1.2
 gunicorn==19.9.0
 pymessenger==0.0.7.0
 wit==6.0.0
+BeautifulSoup4==4.6.0
