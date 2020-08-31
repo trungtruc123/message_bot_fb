@@ -9,4 +9,4 @@
 5. cd project: - change ACCESS_TOKEN, WIT_TOKEN
 6. open App in facebook developer: add webhook
 ## Video demo:
-https://www.youtube.com/watch?v=uQ0VjbLSXF0
+https://www.youtube.com/watch?v=0guSjRHEMK4
