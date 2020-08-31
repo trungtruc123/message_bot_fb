@@ -21,7 +21,7 @@ import logging
 from requests.exceptions import ConnectionError
 app = Flask(__name__)
 # ACCESS_TOKEN = 'ACCESS_TOKEN'
-ACCESS_TOKEN = 'EAAIbv66Rh8wBALmBuI1HXz2lJwLbZA9LZBuTdeHsnWhy76DFEkEUYdkJaTH9n033iMUJXeTL6ZBb08l9sZARn7HmfeARYxrVekhZCRuwxuHPjkW77g1qI3O4SMAgNcnD18MgMmga2pRbDWiZAXDtHuLjQPu7w7JFpZCTnn9CUGfOyIurMWHQxaZC'
+ACCESS_TOKEN = 'EAAIbv66Rh8wBAPIKp9fYSZCDO7KbJI19Ydjr33Q8MZBcclyDxZCyQKgAwqDb00qu01LfyUO1MuFtrhoQQr93yfjt177DaJkhZAZABBDxAP55T92nYVX963ZCMoOo1uqL6v6sUQmNBviX95rVwUcw7EFVSjshNkVxsCdDlOyp98wAQKc5IiMtDX'
 VERIFY_TOKEN = 'VERIFY_TOKEN'
 WIT_TOKEN    = '6OGZVMSELXTJM5HVSWH2IRBRRMLNGKGK'
 bot = Bot(ACCESS_TOKEN)
@@ -201,6 +201,7 @@ def handle_message(response, fb_id):
 def get_summary():
     all_of_it=""
     try:
+        # all_of_it = 'https://suckhoetoandan.vn/'
         url = 'https://suckhoetoandan.vn/'
         page = requests.get(url, verify=False)
         soup = BeautifulSoup(page.text, 'html.parser')
@@ -357,7 +358,7 @@ def show():
 # Setup Wit Client
 client = Wit(access_token=WIT_TOKEN)
 # client.interactive()
-client.logger.setLevel(logging.WARNING)
+# client.logger.setLevel(logging.WARNING)
 resp = client.message('tin tức')
 print('Yay, got Wit.ai response: ' + str(resp))
 response = resp
